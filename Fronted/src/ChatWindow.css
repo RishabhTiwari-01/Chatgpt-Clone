@@ -1,15 +1,15 @@
-.chatWindow {
+/* .chatWindow {
     background-color: #212121;
     height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-between; ho gyaa
     align-items: center;
     text-align: center;
 }
 
-/* navbar */
+ navbar
 
 .navbar {
     width: 100%;
@@ -37,14 +37,23 @@
     cursor: pointer;
 }
 
-/* chat input */
-.chatInput {
+ .chatInput {
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+.chatInput {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px; 
+}
+
+
 
 .inputBox {
     width: 100%;
@@ -55,18 +64,25 @@
     align-items: center;
 }
 
+
+
+
+
+
 input {
-    width: 100%;
-    border: none;
+    width: 94%;
+    height: 50px;
+    border: 2px solid white;
     background-color: rgba(255, 255, 255, 0.05);
-    padding: 20px;
+    padding:  20px;
     font-size: 0.8rem;
     border-radius: 14px;
+
     box-shadow: rgba(0, 0, 0, 0.05) 0 54px 55px,
                 rgba(0, 0, 0, 0.05) 0 -12px 30px,
                 rgba(0, 0, 0, 0.05) 0 4px 6px,
                 rgba(0, 0, 0, 0.05) 0 12px 3px,
-                rgba(0, 0, 0, 0.05) 0 -3px 5px;
+                rgba(0, 0, 0, 0.05) 0 -3px 5px; 
 }
 
 input:focus {
@@ -74,16 +90,27 @@ input:focus {
 }
 
 #submit {
+    width: 100%;
+    height: 100%;
+    } 
+
+#submit i{
     cursor: pointer;
     height: 35px;
-    width: 35px;
+    max-width : 100%;  
     font-size: 20px;
-    position: absolute;
-    right: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding-right: 30px;
+     display: flex;
+    justify-content: right; 
+    border-radius: 19px;
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: rgba(0, 0, 0, 0.05) 0 54px 55px,
+                rgba(0, 0, 0, 0.05) 0 -12px 30px,
+                rgba(0, 0, 0, 0.05) 0 4px 6px,
+                rgba(0, 0, 0, 0.05) 0 12px 3px,
+                rgba(0, 0, 0, 0.05) 0 -3px 5px;
 }
+
 
 #submit i:hover {
     color: #fff;
@@ -95,7 +122,6 @@ input:focus {
     color: #b4b4b4;
 }
 
-/* dropdown css */
 
 .dropDown {
     position: absolute;
@@ -122,4 +148,136 @@ input:focus {
 .dropDownItem:hover {
     background-color: rgba(180, 180, 180, 0.1);
     border-radius: 6px;
+} 
+
+
+
+/// NEW yera begain 
+
+
+
+
+
+
+
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.chatWindow {
+    padding-top: 20px;
+    background-color: #212121;
+    height: 90vh;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.userIcon {
+    background-color: #339cff;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* Chat area should grow */
+.chatContainer {
+    flex: 1;
+    overflow-y: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Chat Input Section */
+.chatInput {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.inputBox {
+    width: 100%;
+    max-width: 750px;
+    position: relative; /* Base for absolute positioning */
+    display: flex;
+    align-items: center;
+}
+
+input {
+    width: 100%;
+    height: 52px;
+    border: 1px solid #444;
+    background-color: #2f2f2f;
+    padding: 10px 60px 10px 20px; /* Right side padding for icon */
+    font-size: 1rem;
+    color: white;
+    border-radius: 15px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #666;
+}
+
+/* THE FIX: Positioning the icon INSIDE the input */
+#submit {
+    position: absolute;
+    right: 12px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #888;
+    transition: 0.2s;
+}
+
+#submit i {
+    font-size: 20px;
+}
+
+#submit:hover i {
+    color: white;
+}
+
+.info {
+    font-size: 0.75rem;
+    margin-top: 10px;
+    color: #888;
+}
+
+/* Dropdown */
+.dropDown {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 180px;
+    background-color: #2f2f2f;
+    padding: 8px;
+    border-radius: 8px;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.dropDownItem {
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.dropDownItem:hover {
+    background-color: #3e3e3e;
 }

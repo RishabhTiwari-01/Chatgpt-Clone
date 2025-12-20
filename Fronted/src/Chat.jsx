@@ -107,7 +107,12 @@ function Chat() {
 
     return (
         <>
-            {newChat && <h1>Start a New Chat!</h1>}
+            {newChat && 
+            <>
+                <h1>Start a New Chat!</h1>
+            <p className="dummyText">Introducing the ultimate AI-powered assistant designed to make your life easier. Whether you're looking for instant answers to complex questions, need help with coding, or just want to brainstorm creative ideas, this app provides real-time, intelligent responses at your fingertips.</p>
+            </>
+            }
             <div className="chats">
                 {
                     prevChats?.slice(0, -1).map((chat, idx) => 
