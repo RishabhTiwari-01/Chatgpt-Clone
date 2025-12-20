@@ -170,11 +170,15 @@ input:focus {
     padding: 10px 20px;
 }
 
+body{
+    overflow: hidden;
+}
+
 .chatWindow {
     padding-top: 20px;
     background-color: #212121;
     height: 90vh;
-    width: 80%;
+    width: 70%;
     display: flex;
     flex-direction: column;
     color: white;
@@ -199,6 +203,12 @@ input:focus {
     display: flex;
     flex-direction: column;
     align-items: center;
+    -ms-overflow-style: none;  /* Internet Explorer aur Edge ke liye */
+    scrollbar-width: none;
+}
+
+.chatContainer::-webkit-scrollbar {
+    display: none;
 }
 
 /* Chat Input Section */
