@@ -1,19 +1,102 @@
-.chats {
+/* .chats {
     max-width: 700px;
     padding: 8rem;
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #444 transparent;
+} */
+
+
+.chats {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Har question aur answer ke beech 25px ka gap */
+    padding: 20px;
 }
 
-.dummyText{
+/* .dummyText{
     width: 50%;
     padding-top: 20px;
     font-size: 15px;
     color:#c2c2c2;
     line-height: 1.6;
+} */
+
+/* 2. Welcome Screen Fix (Profile Icon ko disturb nahi karega) */
+.welcomeScreen {
+    position: absolute; /* Fixed ki jagah absolute use karo */
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: auto; /* Width auto rakho taaki poori screen na ghere */
+    min-width: 300px;
+    max-width: 600px;
+    z-index: 1; /* Messages aur Icons se niche rahega */
+    pointer-events: none;
 }
 
+/* Navbar ko control karne ke liye */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px; /* Right aur Left side se 30px ki jagah de di */
+    width: 100%;
+    box-sizing: border-box; /* Padding ko width ke andar rakhne ke liye */
+}
+
+/* Specific Profile Icon styling */
+.userIconDiv {
+    margin-right: 15px; /* Kone se thoda aur gap dene ke liye */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.userIcon {
+    background-color: #3e3f4b;
+    padding: 8px;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+.userIcon:hover {
+    background-color: #565869;
+}
+
+/* 2. User ka dabba (Question) */
+.userDiv {
+    align-self: flex-end; /* Right side shift karega */
+    background-color: #343541;
+    padding: 12px 18px;
+    border-radius: 15px 15px 0 15px; /* Thoda stylish look */
+    max-width: 70%;
+    margin-bottom: 5px; /* Answer se thoda door */
+}
+
+
+.welcomeScreen h1 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.dummyText {
+    font-size: 15px;
+    color: #c2c2c2;
+    line-height: 1.6;
+    margin: 0 auto;    /* Paragraph ko container mein center rakhega */
+}
+h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
 .userDiv {
     display: flex;
     justify-content: flex-end;
@@ -22,10 +105,24 @@
 
 
 .gptDiv {
-    text-align: left;
-    font-size: 0.9rem;
+    align-self: flex-start; /* Left side rahega */
+    background-color: #444654;
+    padding: 18px;
+    border-radius: 15px 15px 15px 0;
+    width: 100%; /* Taaki answer wide dikhe */
+    max-width: 850px;
+    margin-bottom: 20px; /* Agle question se pehle gap */
+    line-height: 1.6;
 }
 
+.gptDiv ul, .gptDiv ol {
+    margin-top: 10px;
+    padding-left: 25px;
+}
+
+.gptDiv li {
+    margin-bottom: 8px; /* Har vegetable ke naam mein gap */
+}
 .userMessage {
     background-color: #323232;
     padding: 10px 20px;
@@ -40,4 +137,100 @@
 
 pre {
     white-space: pre-wrap;
+}
+
+/* Container Spacing */
+chats {
+    position: relative;
+    z-index: 2; /* Messages welcome screen ke upar aayenge */
+    background: transparent; /* Taaki peeche ka text dikhta rahe (agar chahiye toh) */
+}
+
+/* Common Box Styling */
+.userDiv, .gptDiv {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    max-width: 90%;
+}
+
+.userDiv {
+    align-self: flex-end;
+    background-color: #343541;
+    flex-direction: row-reverse; /* User icon right mein */
+}
+
+.gptDiv {
+    align-self: flex-start;
+    background-color: #444654;
+    width: 100%;
+}
+
+/* Markdown Content Styling */
+.messageContent {
+    line-height: 1.6;
+    font-size: 15px;
+    overflow-x: auto; /* Table bahar na jaye */
+}
+
+/* Table Styling - Isse table sahi dikhega */
+.messageContent table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 15px 0;
+    border: 1px solid #565869;
+}
+
+.messageContent th, .messageContent td {
+    border: 1px solid #565869;
+    padding: 10px;
+    text-align: left;
+}
+
+.messageContent th {
+    background-color: #3e3f4b;
+}
+
+/* Lists Styling */
+.messageContent ul, .messageContent ol {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+/* 3. Scrollbar ko Sundar Banane ke liye (Custom Styling) */
+.chats::-webkit-scrollbar {
+    width: 8px; /* Scrollbar ki motayi */
+}
+
+.chats::-webkit-scrollbar-track {
+    background: #202123; /* Track ka color (dark) */
+}
+
+.chats::-webkit-scrollbar-thumb {
+    background: #565869; /* Scroll handle ka color */
+    border-radius: 10px;
+}
+
+.chats::-webkit-scrollbar-thumb:hover {
+    background: #acacbe; /* Hover karne par chamkega */
+}
+
+
+.chatWindow {
+    background-color: #212121; /* Sirf solid color rakho */
+    background-image: none !important; /* Saare patterns khatam */
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.chatContainer {
+    height: calc(100vh - 150px); /* Input area ko chhod kar baki height */
+    overflow-y: auto;
+    position: relative;
+    z-index: 10; /* Welcome text se upar rahega */
+    background: transparent; /* Taaki peeche ka text aur lines dikhti rahein */
 }

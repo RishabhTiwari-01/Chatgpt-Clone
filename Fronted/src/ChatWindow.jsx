@@ -199,6 +199,108 @@
 
 
 
+// import "./ChatWindow.css";
+// import Chat from "./Chat.jsx";
+// import { MyContext } from "./MyContext.jsx";
+// import ReactMarkdown from 'react-markdown';
+// import { useContext, useState, useEffect } from "react";
+// import { ScaleLoader } from "react-spinners";
+
+// function ChatWindow() {
+//     const { prompt, setPrompt, reply, setReply, currThreadId, setPrevChats, setNewChat } = useContext(MyContext);
+//     const [loading, setLoading] = useState(false);
+//     const [isOpen, setIsOpen] = useState(false);
+
+//     const getReply = async () => {
+//         if (!prompt.trim()) return; // Khali prompt send na ho
+//         setLoading(true);
+//         setNewChat(false);
+
+//         const options = {
+//             method: "POST",
+//             headers: { "Content-Type": "application/json" },
+//             body: JSON.stringify({
+//                 message: prompt,
+//                 threadId: currThreadId
+//             })
+//         };
+
+//         try {
+//             // const response = await fetch("https://chatgpt-clone-backend-7laf.onrender.com/api/chat", options);
+//             const response = await fetch("http://localhost:8080/api/chat", options);
+//             const res = await response.json();
+//             setReply(res.reply);
+//         } catch (err) {
+//             console.log(err);
+//         }
+//         setLoading(false);
+//     };
+
+//     useEffect(() => {
+//         if (prompt && reply) {
+//             setPrevChats(prevChats => ([
+//                 ...prevChats,
+//                 { role: "user", content: prompt },
+//                 { role: "assistant", content: reply }
+//             ]));
+//             setPrompt(""); // Reply aane ke baad input clear
+//         }
+//     }, [reply]);
+
+//     const handleProfileClick = () => setIsOpen(!isOpen);
+
+//     return (
+//         <div className="chatWindow">
+//             <div className="navbar">
+//                 <span>CHATGPT <i className="fa-solid fa-chevron-down"></i></span>
+//                 <div className="userIconDiv" onClick={handleProfileClick}>
+//                     <span className="userIcon"><i className="fa-solid fa-user"></i></span>
+//                 </div>
+//             </div>
+
+//             {isOpen && (
+//                 <div className="dropDown">
+//                     <div className="dropDownItem"><i className="fa-solid fa-gear"></i> Settings</div>
+//                     <div className="dropDownItem"><i className="fa-solid fa-cloud-arrow-up"></i> Upgrade plan</div>
+//                     <div className="dropDownItem"><i className="fa-solid fa-arrow-right-from-bracket"></i> Log out</div>
+//                 </div>
+//             )}
+
+//             <div className="chatContainer">
+//                 <Chat />
+//                 {loading && <div className="loader"><ScaleLoader color="#fff" /></div>}
+//             </div>
+            
+//             <div className="chatInput">
+//                 <div className="inputBox">
+//                     <input 
+//                         placeholder="Ask anything"
+//                         value={prompt}
+//                         onChange={(e) => setPrompt(e.target.value)}
+//                         onKeyDown={(e) => e.key === 'Enter' ? getReply() : ''}
+//                     />
+//                     {/* Submit button ko input ke andar position kiya gaya hai CSS mein */}
+//                     <button id="submit" onClick={getReply}>
+//                         <i className="fa-solid fa-paper-plane"></i>
+//                     </button>
+//                 </div>  
+//                 <p className="info">
+//                     CHATGPT can make mistakes. Check important info.
+//                 </p>
+//             </div>
+//         </div>
+//     );
+// }
+
+// export default ChatWindow;
+
+
+
+///NEW CHATWINDOW.JSX
+
+
+
+
 import "./ChatWindow.css";
 import Chat from "./Chat.jsx";
 import { MyContext } from "./MyContext.jsx";
@@ -206,12 +308,21 @@ import { useContext, useState, useEffect } from "react";
 import { ScaleLoader } from "react-spinners";
 
 function ChatWindow() {
-    const { prompt, setPrompt, reply, setReply, currThreadId, setPrevChats, setNewChat } = useContext(MyContext);
+    // 1. setAllThreads ko context se nikala
+    const { 
+        prompt, setPrompt, 
+        reply, setReply, 
+        currThreadId, 
+        setPrevChats, 
+        setNewChat, 
+        setAllThreads 
+    } = useContext(MyContext);
+    
     const [loading, setLoading] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
 
     const getReply = async () => {
-        if (!prompt.trim()) return; // Khali prompt send na ho
+        if (!prompt.trim()) return;
         setLoading(true);
         setNewChat(false);
 
@@ -225,11 +336,26 @@ function ChatWindow() {
         };
 
         try {
-            const response = await fetch("https://chatgpt-clone-backend-7laf.onrender.com/api/chat", options);
+            const response = await fetch("http://localhost:8080/api/chat", options);
             const res = await response.json();
+            
+            // Backend se aane wala reply set karein
             setReply(res.reply);
+
+            // --- HISTORY UPDATE LOGIC ---
+            // Agar backend se naya thread object aaya hai, toh sidebar update karo
+            if (res.thread) {
+                setAllThreads(prev => {
+                    const exists = prev.find(t => t.threadId === res.thread.threadId);
+                    if (!exists) {
+                        // Naya thread list mein sabse upar add hoga
+                        return [res.thread, ...prev];
+                    }
+                    return prev;
+                });
+            }
         } catch (err) {
-            console.log(err);
+            console.log("Error fetching reply:", err);
         }
         setLoading(false);
     };
@@ -241,7 +367,7 @@ function ChatWindow() {
                 { role: "user", content: prompt },
                 { role: "assistant", content: reply }
             ]));
-            setPrompt(""); // Reply aane ke baad input clear
+            setPrompt(""); 
         }
     }, [reply]);
 
@@ -277,7 +403,6 @@ function ChatWindow() {
                         onChange={(e) => setPrompt(e.target.value)}
                         onKeyDown={(e) => e.key === 'Enter' ? getReply() : ''}
                     />
-                    {/* Submit button ko input ke andar position kiya gaya hai CSS mein */}
                     <button id="submit" onClick={getReply}>
                         <i className="fa-solid fa-paper-plane"></i>
                     </button>
@@ -291,5 +416,8 @@ function ChatWindow() {
 }
 
 export default ChatWindow;
+
+
+
 
 

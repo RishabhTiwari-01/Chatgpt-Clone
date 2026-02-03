@@ -37,6 +37,7 @@ connectDB();
 app.get("/", (req, res) => { res.send("Server is running!"); });
 
 
+
 const connectDB = async () => {
     try {
         await mongoose.connect(process.env.MONGODB_URI);

@@ -1,4 +1,4 @@
-.sidebar {
+/* .sidebar {
     background-color: #171717;
     color: #b4b4b4;
     height: 100vh;
@@ -6,6 +6,209 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+
+button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: transparent;
+    border: solid 0.5px rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
+
+.logo {
+    height: 25px;
+    width: 25px;
+    background-color: #fff;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+button span {
+    font-size: 20px;
+}
+
+button:hover {
+    background-color: rgba(180, 180, 180, 0.05);
+}
+
+.history {
+    margin: 10px;
+    padding: 10px;
+    height: 100%;
+}
+
+.history li {
+    list-style-type: none;
+    cursor: pointer;
+    padding: 2px 5px;
+    margin-bottom: 0.3rem;
+    font-size: 14px;
+    border: solid 10px transparent;
+    position: relative;
+}
+
+.history li:hover {
+    background-color: rgba(180, 180, 180, 0.05);
+    border-radius: 10px;
+}
+
+.sign {
+    padding: 10px;
+    margin: 10px;
+    font-size: 14px;
+    text-align: center;
+    border-top: solid 0.25px rgba(255, 255, 255, 0.5);
+}
+
+.fa-trash {
+    opacity: 0;
+    position: absolute;
+    right: 0;
+}
+
+.history li:hover .fa-trash {
+    opacity: 1;
+    color: #fff;
+}
+
+.fa-trash:hover {
+    color: #f87171 !important;
+}
+
+.highlighted {
+    background-color: rgba(180, 180, 180, 0.05);
+    border-radius: 10px;
+} */
+
+
+.sidebar {
+    background-color: #171717;
+    color: #ececec;
+    height: 100vh;
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+/* Button Reset & Left Align */
+.newChatBtn {
+    display: flex;
+    justify-content: flex-start; /* Isse center se hat kar left aayega */
+    align-items: center;
+    gap: 12px;
+    margin: 10px auto;
+    padding: 12px 16px;
+    border-radius: 8px;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    width: 95%;
+}
+
+.newChatBtn:hover {
+    background-color: #212121;
+}
+
+/* History List - Main Fix for "Boxes" */
+.history {
+    flex: 1;
+    overflow-y: auto;
+    margin: 15px 0;
+    padding: 0;
+    list-style: none; /* Sabse important: Bullet points hatane ke liye */
+}
+
+/* Scrollbar Styling */
+.history::-webkit-scrollbar {
+    width: 4px;
+}
+.history::-webkit-scrollbar-thumb {
+    background: #373737;
+    border-radius: 10px;
+}
+
+.history li {
+    list-style: none; /* Double protection */
+    list-style-type: none; /* Browser default hatao */
+    cursor: pointer;
+    padding: 12px;
+    margin: 4px 8px;
+    font-size: 14px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    border: none !important; /* Kisi bhi tarah ka extra border hatao */
+    transition: background 0.2s;
+}
+
+.history li:hover, .highlighted {
+    background-color: #212121;
+}
+
+/* Icon & Title Alignment */
+.fa-message {
+    font-size: 14px;
+    color: #b4b4b4;
+}
+
+.threadTitle {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Trash Icon styling */
+.deleteIcon {
+    opacity: 0;
+    font-size: 13px;
+    transition: opacity 0.2s;
+}
+
+.history li:hover .deleteIcon {
+    opacity: 0.6;
+}
+
+.deleteIcon:hover {
+    color: #ff4d4d !important;
+    opacity: 1 !important;
+}
+
+/* Footer Sign */
+.sign {
+    padding: 15px;
+    font-size: 12px;
+    text-align: center;
+    color: #666;
+    border-top: 1px solid #212121;
+}
+
+
+
+
+
+
+
+
+
+
+.sidebar {
+    background-color: #171717;
+    color: #b4b4b4;
+    height: 100vh;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 
