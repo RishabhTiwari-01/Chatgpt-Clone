@@ -97,7 +97,7 @@ function App() {
   useEffect(() => {
     const fetchAllHistory = async () => {
       try {
-        const res = await axios.get("http://localhost:8080/api/thread");
+        const res = await axios.get("https://e-commerce-backend-wzux.onrender.com/api/thread");
         setAllThreads(res.data); // Backend se threads list yahan save hogi
       } catch (err) {
         console.error("Error fetching history:", err);
