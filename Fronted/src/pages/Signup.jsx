@@ -17,7 +17,7 @@ const Signup = () => {
 
     try {
       // Backend API Call
-      const res = await axios.post("http://localhost:8080/api/auth/register", { 
+      const res = await axios.post("https://chatgpt-clone-backend-7laf.onrender.com/api/auth/register", { 
         email, 
         password 
       });

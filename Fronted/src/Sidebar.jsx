@@ -23,7 +23,7 @@ const Sidebar = () => {
             try {
                 const token = localStorage.getItem("token");
                 // Backend call
-                await axios.delete(`http://localhost:8080/api/thread/${idToDelete}`, {
+                await axios.delete(`https://chatgpt-clone-backend-7laf.onrender.com/api/thread/${idToDelete}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
 
