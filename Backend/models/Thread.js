@@ -36,3 +36,12 @@ const ThreadSchema = new mongoose.Schema({
     }
 });
 export default mongoose.model("Thread", ThreadSchema);
+
+
+
+
+
+
+
+
+
