@@ -47,6 +47,13 @@
     background: #373737;
     border-radius: 10px;
 }
+element.style {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(33, 72, 192);
+}
 
 .history li {
     list-style: none; /* Double protection */
